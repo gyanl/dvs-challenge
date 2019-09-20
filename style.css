@@ -1,0 +1,36 @@
+body{
+  text-align: center;
+  background-color: #eee;
+  font-family: "Inter";
+  font-weight: 600;
+  color: #222;
+}
+
+.viz{
+  display: none;
+}
+
+iframe{
+  max-width: 75vw;
+  max-height: 60vh;
+}
+
+.section{
+  background: #fff;
+  text-align: center;
+  transition: 1s;
+  border-radius: 12px;
+
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  margin-top: 20px;
+  margin-left: 120px;
+  margin-right: 120px;
+}
+
+.active{
+  display: block;
+}

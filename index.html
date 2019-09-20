@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <title>canvas</title>
+  </head>
+  <body>
+    <h2> The demographics of data vizualizers</h2>
+    <p>Some text goes here.</p>
+    <div class="section" id="section-where" onclick="toggleCountryVisble();">
+      Where do data visualizers come from?
+      <div id="country" class="viz">
+          Is this working?
+      </div>
+    </div>
+
+    <div class="section" id="section-tools" onclick="toggleToolsVisble();">
+      What TOOLS do data visualizers use to create data visualization?
+      <div id="tools" class="viz">
+    <iframe src='https://public.flourish.studio/visualisation/688977/embed' frameborder='0' scrolling='no' style='width:100%;height:600px;'></iframe><div style='width:100%!;margin-top:1px!important;text-align:right!important;'><a class='flourish-credit' href='https://public.flourish.studio/visualisation/688977/?utm_source=embed&utm_campaign=visualisation/688977' target='_top' style='text-decoration:none!important'><img alt='Made with Flourish' src='https://public.flourish.studio/resources/made_with_flourish.svg' style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> </a></div>
+      </div>
+    </div>
+
+  </body>
+  <script>
+
+  Plotly.d3.csv('countries.csv', function(err, rows){
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });
+    }
+
+  var data = [{
+      type: 'choropleth',
+      locationmode: 'country names',
+      locations: unpack(rows, 'country'),
+      z: unpack(rows, 'people'),
+      text: unpack(rows, 'country'),
+      autocolorscale: true
+  }];
+
+  var layout = {
+    title: 'Data visualizers by country.',
+    geo: {
+        projection: {
+            type: 'robinson'
+        }
+    }
+  };
+
+  Plotly.plot(tools, data, layout, {showLink: false});
+
+});
+
+
+
+    var tools = document.getElementById("tools");
+    var country = document.getElementById("country");
+
+    function toggleCountryVisble() {
+      country.classList.add("active");
+      tools.classList.remove("active");
+    };
+
+    function toggleToolsVisble() {
+      country.classList.remove("active");
+      tools.classList.add("active");
+    };
+
+  </script>
+</html>
