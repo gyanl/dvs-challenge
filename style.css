@@ -34,3 +34,7 @@ iframe{
 .active{
   display: block;
 }
+
+p{
+  font-weight: normal;
+}
